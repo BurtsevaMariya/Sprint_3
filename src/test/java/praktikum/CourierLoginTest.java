@@ -22,11 +22,6 @@ public class CourierLoginTest {
         courierClient = new CourierClient();
     }
 
-    @After
-    public void tearDown(){
-        courierClient.delete(courierId);
-    }
-
     @Test
     @DisplayName("Проверяю возможность авторизации курьера")
     @Description("Тестирую endpoint: /api/v1/courier/login")
@@ -38,6 +33,8 @@ public class CourierLoginTest {
 
         assertThat("Courier Id invalid", courierId, is(not(0)));
         validatableResponse.assertThat().statusCode(SC_OK);
+
+        courierClient.delete(courierId);
     }
 
     @Test

@@ -17,26 +17,16 @@ public class Order extends ScooterRestClient{
     private static final String ORDER_PATH = "api/v1/orders/";
 
     @Step("Создание заказа")
-    public Response createOrder(String [] color) throws JsonProcessingException {
+public Response createOrderColor(Map<String, Object> data) throws JsonProcessingException {
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("firstName", "Naruto");
-        data.put("lastName", "Uchiha");
-        data.put("address", "Konoha, 142 apt.");
-        data.put("metroStation", 4);
-        data.put("phone", "+7 800 355 35 35");
-        data.put("rentTime", 5);
-        data.put("deliveryDate", "2020-06-06");
-        data.put("comment", "Saske, come back to Konoha");
-        data.put("color", color);
         String json = new ObjectMapper().writeValueAsString(data);
 
-        return response = given()
-                .spec(getBaseSpec())
-                .body(json)
-                .when()
-                .post(ORDER_PATH);
-    }
+            return response = given()
+                    .spec(getBaseSpec())
+                    .body(json)
+                    .when()
+                    .post(ORDER_PATH);
+        }
 
     @Step("Получение списка заказов")
     public ValidatableResponse getOrderList(){

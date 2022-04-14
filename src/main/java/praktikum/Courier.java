@@ -4,15 +4,18 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class Courier {
 
-    public final String login;
-    public final String password;
-    public final String firstName;
+    public String login;
+    public String password;
+    public String firstName;
 
     public Courier(String login, String password, String firstName){
         this.login = login;
         this.password = password;
         this.firstName = firstName;
     }
+
+    public Courier(){
+        }
 
     public static Courier getRandom(){
         return Courier.getRandom(true, true, true);

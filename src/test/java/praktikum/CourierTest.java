@@ -22,11 +22,6 @@ public class CourierTest {
         courierClient = new CourierClient();
     }
 
-    @After
-    public void tearDown(){
-        courierClient.delete(courierId);
-    }
-
     @Test
     @DisplayName("Проверяю возможность создания курьера")
     @Description("Тестирую endpoint: /api/v1/courier")
@@ -41,6 +36,7 @@ public class CourierTest {
         validatableResponse.assertThat().statusCode(SC_CREATED);
         assertTrue("Courier not created", courierCreated);
         assertThat("Courier ID invalid", courierId, is(not(0)));
+        courierClient.delete(courierId);
     }
 
     @Test
